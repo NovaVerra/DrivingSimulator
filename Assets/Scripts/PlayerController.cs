@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	/** Game Configuration */
-	[SerializeField] float	VehicleSpeed = 20f;
+	[SerializeField] float	VehicleSpeed = 20.0f;
 
 	// Start is called before the first frame update
 	void Start()
