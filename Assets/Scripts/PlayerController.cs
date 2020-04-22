@@ -10,13 +10,8 @@ public class PlayerController : MonoBehaviour
 	float	HorizontalInput;
 	float	VerticalInput;
 
-	// Start is called before the first frame update
-	void Start()
-	{
-	}
-
 	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
 	{
 		GetPlayerInput();
 		MoveVehicle();
