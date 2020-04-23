@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour
 	// [SerializeField] float	VehicleSpeed = 20.0f;
 	[SerializeField] GameObject			CenterOfMass;
 	[SerializeField] TextMeshProUGUI	Speedometer;
+	[SerializeField] TextMeshProUGUI	RPMText;
 	[SerializeField] float	HorsePower = 50000.0f;
 	[SerializeField] float	TurnSpeed = 50.0f;
 	float		Speed;
+	float		RPM;
 	float		HorizontalInput;
 	float		VerticalInput;
 	Rigidbody	RB_Player;
@@ -47,5 +49,7 @@ public class PlayerController : MonoBehaviour
 	{
 		Speed = Mathf.RoundToInt(RB_Player.velocity.magnitude * 2.237f); // change 2.237 to 3.6 for KPH
 		Speedometer.text = "Speed: " + Speed + "mph";
+		RPM = Mathf.RoundToInt(Speed % 40) * 60;
+		RPMText.text = "RPM: " + RPM;
 	}
 }
