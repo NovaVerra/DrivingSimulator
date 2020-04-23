@@ -4615,8 +4615,14 @@ MonoBehaviour:
   CenterOfMass: {fileID: 1564846726}
   Speedometer: {fileID: 793147358}
   RPMText: {fileID: 977530271}
+  Wheels:
+  - {fileID: 1954584115}
+  - {fileID: 1358239367}
+  - {fileID: 1521551201}
+  - {fileID: 936314134}
   HorsePower: 15000
   TurnSpeed: 50
+  WheelsOnGround: 0
 --- !u!54 &1781095017
 Rigidbody:
   m_ObjectHideFlags: 0

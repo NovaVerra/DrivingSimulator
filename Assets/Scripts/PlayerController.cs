@@ -7,11 +7,13 @@ public class PlayerController : MonoBehaviour
 {
 	/** Game Configuration */
 	// [SerializeField] float	VehicleSpeed = 20.0f;
-	[SerializeField] GameObject			CenterOfMass;
-	[SerializeField] TextMeshProUGUI	Speedometer;
-	[SerializeField] TextMeshProUGUI	RPMText;
+	[SerializeField] GameObject				CenterOfMass;
+	[SerializeField] TextMeshProUGUI		Speedometer;
+	[SerializeField] TextMeshProUGUI		RPMText;
+	[SerializeField] List<WheelCollider>	Wheels;
 	[SerializeField] float	HorsePower = 50000.0f;
 	[SerializeField] float	TurnSpeed = 50.0f;
+	[SerializeField] int	WheelsOnGround;
 	float		Speed;
 	float		RPM;
 	float		HorizontalInput;
@@ -27,9 +29,12 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void	FixedUpdate()
 	{
-		GetPlayerInput();
+		if (CountWheels())
+		{
+			GetPlayerInput();
+			UpdateSpeedometer();
+		}
 		MoveVehicle();
-		UpdateSpeedometer();
 	}
 
 	void	GetPlayerInput()
@@ -51,5 +56,19 @@ public class PlayerController : MonoBehaviour
 		Speedometer.text = "Speed: " + Speed + "mph";
 		RPM = Mathf.RoundToInt(Speed % 40) * 60;
 		RPMText.text = "RPM: " + RPM;
+	}
+
+	bool	CountWheels()
+	{
+		WheelsOnGround = 0;
+		foreach(WheelCollider Wheel in Wheels)
+		{
+			if (Wheel.isGrounded)
+			{
+				WheelsOnGround++;
+			}
+		}
+		if (WheelsOnGround == 4) { return true; }
+		else { return false; }
 	}
 }
